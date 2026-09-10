@@ -1,0 +1,175 @@
+nome: Construir APK do GH IA
+
+sobre:
+  despacho de fluxo de trabalho:
+
+empregos:
+  construir:
+    executa em: ubuntu-latest
+
+    passos:
+      - nome: Baixar projeto
+        utiliza: ações/checkout@v4
+
+      - nome: aparentemente Java
+        utiliza: actions/setup-java@v4
+        com:
+          Distribuição: temurin
+          versão do java: '17'
+
+      - nome: y Android
+        usa: android-actions/setup-android@v3
+
+      - nome: SDK do Android
+        executar: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - nome: Criar projeto Android
+        executar: |
+          mkdir -p app/src/main/java/com/ghia/app
+          mkdir -p app/src/main/res/values
+
+          cat > settings.gradle <<'EOF'
+          gerenciamentoDePlugins {
+              repositórios {
+                  Google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+          gerenciamentoDeResoluçãoDeDependências {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositórios {
+                  Google()
+                  mavenCentral()
+              }
+          }
+          rootProject.name = 'GHIAAndroid'
+          incluir ':app'
+          Fim do jogo
+
+          cat > build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application' versão '8.6.1' aplicar falso
+          }
+          Fim do jogo
+
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+
+          android {
+              namespace 'com.ghia.app'
+              compileSdk 35
+
+              Configuração padrão {
+                  ID do aplicativo 'com.ghia.app'
+                  minSdk 23
+                  targetSdk 35
+                  código da versão 1
+                  nome da versão '1.0'
+              }
+          }
+          Fim do jogo
+
+          cat > app/src/main/res/values/strings.xml <<'EOF'
+          <recursos>
+              <string name="app_name">GH IA</string>
+          </recursos>
+          Fim do jogo
+
+          cat > app/src/main/AndroidManifest.xml <<'EOF'
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              <uses-permission android:name="android.permission.INTERNET" />
+              <uses-permission android:name="android.permission.RECORD_AUDIO" />
+              <aplicativo>
+                  android:theme="@style/AppTheme"
+                  android:label="GH IA"
+                  android:usesCleartextTraffic="false">
+                  <atividade
+                      android:name=".MainActivity"
+                      android:exported="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </atividade>
+              </aplicação>
+          </manifesto>
+          Fim do jogo
+
+          cat > app/src/main/res/values/styles.xml <<'EOF'
+          <recursos>
+              <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+                  <item name="android:fontFamily">sans</item>
+                  <item name="android:colorAccent">#9B8CFF</item>
+                  <item name="android:statusBarColor">#0B1020</item>
+                  <item name="android:navigationBarColor">#0B1020</item>
+              </style>
+          </recursos>
+          Fim do jogo
+
+          cat > app/src/main/java/com/ghia/app/MainActivity.java <<'EOF'
+          pacote com.ghia.app;
+
+          import android.Manifest;
+          import android.app.Activity;
+          import android.content.pm.PackageManager;
+          import android.os.Bundle;
+          import android.webkit.PermissionRequest;
+          import android.webkit.WebChromeClient;
+          import android.webkit.WebSettings;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+
+          public class MainActivity extends Activity {
+              WebView privada webView;
+              private static final int AUDIO_PERMISSION = 20;
+
+              @Substituir
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  webView = new WebView(this);
+                  definirContentView(webView);
+
+                  Configurações da Web = webView.getSettings();
+                  configurações.setJavaScriptEnabled(true);
+                  configurações.setDomStorageEnabled(true);
+                  configurações.setMediaPlaybackRequiresUserGesture(false);
+                  webView.setWebViewClient(new WebViewClient());
+                  webView.setWebChromeClient(new WebChromeClient() {
+                      @Substituir
+                      public void onPermissionRequest(final PermissionRequest request) {
+                          runOnUiThread(() -> request.grant(request.getResources()));
+                      }
+                  });
+
+                  se (android.os.Build.VERSION.SDK_INT >= 23 &&
+                      checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                      solicitarPermissões(new String[]{Manifest.permission.RECORD_AUDIO}, AUDIO_PERMISSION);
+                  }
+
+                  webView.loadUrl("https://ghguilherme453-alt.github.io/GHIA/");
+              }
+
+              @Substituir
+              público void onBackPressed() {
+                  se (webView.canGoBack()) webView.goBack();
+                  senão super.onBackPressed();
+              }
+          }
+          Fim do jogo
+
+      - nome: equilíbrio Gradle
+        usa: gradle/actions/setup-gradle@v4
+        com:
+          versão do Gradle: '8.7'
+
+      - nome: Gerar APK
+        executar: gradle assembleDebug
+
+      - nome: Disponibilizar APK
+        utiliza: actions/upload-artifact@v4
+        com:
+          nome: GH-IA-Android
+          Caminho: app/build/outputs/apk/debug/app-debug.apk
