@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GH IA — Fale com inteligências que combinam com você</title>
+  <meta name="description" content="Escolha uma IA, descubra uma nova perspectiva e comece uma conversa.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GH IA — Fale com inteligências que combinam com você">
+  <meta property="og:description" content="Uma nova conversa começa com a IA certa.">
+  <meta property="og:image" content="__ZAPIA_SITE_ORIGIN__/_z/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="__ZAPIA_SITE_ORIGIN__/_z/og.png">
+  <link rel="manifest" href="__ZAPIA_SITE_URL__/manifest.webmanifest">
+  <meta name="theme-color" content="#101827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="GH IA">
+  <link rel="apple-touch-icon" href="__ZAPIA_SITE_URL__/apple-touch-icon.png">
+  <style>
+    :root { --ink:#f7f8fc; --muted:#a9b2c6; --bg:#0b1020; --panel:#131b30; --panel2:#18233d; --line:#263452; --violet:#9b8cff; --mint:#63e6be; --pink:#ff8fbd; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:radial-gradient(circle at 75% -10%, #273667 0, transparent 36%), var(--bg); font:16px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1120px, calc(100% - 40px)); margin:auto; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:25px 0; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:-.03em; }
+    .logo { display:grid; place-items:center; width:38px; height:38px; border-radius:13px; background:linear-gradient(135deg,var(--violet),var(--pink)); box-shadow:0 8px 28px #9b8cff40; font-size:19px; }
+    nav { display:flex; gap:24px; color:var(--muted); font-size:14px; }
+    nav a:hover { color:var(--ink); }
+    .hero { display:grid; grid-template-columns:1fr .9fr; gap:72px; align-items:center; padding:66px 0 92px; }
+    .eyebrow { color:var(--mint); font-weight:800; font-size:13px; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { margin:14px 0 20px; max-width:650px; font-size:clamp(42px,6vw,74px); line-height:1.01; letter-spacing:-.065em; }
+    .hero p { max-width:530px; color:var(--muted); font-size:19px; }
+    .buttons { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; padding:13px 19px; border:1px solid var(--line); border-radius:13px; font-weight:750; }
+    .button.primary { color:#101225; background:var(--mint); border-color:var(--mint); }
+    .button.secondary { background:#ffffff08; }
+    .chat { background:#111a2d; border:1px solid var(--line); border-radius:24px; box-shadow:0 30px 80px #00000045; overflow:hidden; transform:rotate(1.2deg); }
+    .hero-photo { position:relative; min-height:520px; overflow:hidden; border:1px solid #a98cff66; border-radius:26px; background:#11152a; box-shadow:0 30px 80px #00000055; transform:rotate(1.2deg); }
+    .hero-photo img { display:block; width:100%; height:100%; min-height:520px; object-fit:cover; }
+    .hero-photo::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 35%, #080b18cc 100%); }
+    .photo-label { position:absolute; z-index:1; right:20px; bottom:20px; left:20px; display:flex; align-items:end; justify-content:space-between; gap:12px; }
+    .photo-label strong { display:block; font-size:22px; letter-spacing:-.03em; }
+    .photo-label span { color:#c9c0ff; font-size:13px; }
+    .photo-badge { padding:8px 11px; border:1px solid #c5b8ff66; border-radius:999px; color:#eeeaff; background:#211a4699; font-size:12px; white-space:nowrap; }
+    .chat-top { display:flex; align-items:center; gap:12px; padding:18px 20px; border-bottom:1px solid var(--line); }
+    .avatar { display:grid; place-items:center; width:42px; height:42px; border-radius:14px; background:linear-gradient(135deg,#ffcf70,#ff7eae); font-size:22px; }
+    .chat-top strong { display:block; }
+    .online { color:var(--mint); font-size:12px; }
+    .messages { display:flex; flex-direction:column; gap:15px; padding:24px 20px 20px; }
+    .bubble { max-width:82%; padding:13px 15px; border-radius:17px; color:#dfe5f4; font-size:14px; }
+    .bubble.ai { align-self:flex-start; background:var(--panel2); border-bottom-left-radius:5px; }
+    .bubble.you { align-self:flex-end; background:#6558b9; border-bottom-right-radius:5px; }
+    .fake-input { margin:0 20px 20px; padding:13px 15px; border:1px solid var(--line); border-radius:13px; color:#717e9e; font-size:13px; }
+    section { padding:54px 0 90px; }
+    .section-head { display:flex; justify-content:space-between; gap:20px; align-items:end; margin-bottom:24px; }
+    h2 { margin:0; font-size:32px; letter-spacing:-.04em; }
+    .section-head p { margin:0; color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .card { min-height:218px; padding:21px; background:#ffffff08; border:1px solid var(--line); border-radius:18px; transition:transform .2s, background .2s; }
+    .card:hover { transform:translateY(-4px); background:#ffffff0d; }
+    .card-icon { display:grid; place-items:center; width:45px; height:45px; margin-bottom:22px; border-radius:14px; background:#9b8cff1f; font-size:23px; }
+    .card:nth-child(2) .card-icon { background:#63e6be1c; }
+    .card:nth-child(3) .card-icon { background:#ff8fbd1c; }
+    .card:nth-child(4) .card-icon { background:#ffcf701c; }
+    h3 { margin:0 0 7px; font-size:18px; }
+    .card p { margin:0; color:var(--muted); font-size:14px; }
+    .tag { display:inline-block; margin-top:18px; padding:5px 9px; border-radius:999px; color:#c7d1e8; background:#ffffff0b; font-size:11px; }
+    .how { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .demo { display:grid; grid-template-columns:260px 1fr; min-height:430px; overflow:hidden; background:#111a2d; border:1px solid var(--line); border-radius:22px; box-shadow:0 24px 60px #00000035; }
+    .bot-menu { padding:18px; background:#0f1729; border-right:1px solid var(--line); }
+    .bot-menu-title { margin:3px 8px 16px; color:var(--muted); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .bot-choice { display:flex; align-items:center; gap:10px; margin:6px 0; padding:11px; border:1px solid transparent; border-radius:12px; color:#cbd4e8; font-size:14px; }
+    .bot-choice.active { border-color:#9b8cff66; color:#fff; background:#9b8cff1c; }
+    .bot-dot { display:grid; place-items:center; width:32px; height:32px; border-radius:10px; background:#6558b9; }
+    .demo-chat { display:flex; flex-direction:column; }
+    .demo-head { display:flex; align-items:center; gap:11px; padding:18px 22px; border-bottom:1px solid var(--line); }
+    .demo-head strong { display:block; }
+    .demo-head small { color:var(--mint); }
+    .demo-messages { display:flex; flex:1; flex-direction:column; gap:14px; padding:24px 22px; }
+    .demo-bubble { max-width:72%; padding:13px 15px; border-radius:16px; color:#dfe5f4; font-size:14px; }
+    .demo-bubble.ai { align-self:flex-start; background:#1b2945; border-bottom-left-radius:5px; }
+    .demo-bubble.user { align-self:flex-end; background:#6558b9; border-bottom-right-radius:5px; }
+    .demo-input { display:flex; gap:10px; margin:0 22px 10px; padding:8px; border:1px solid var(--line); border-radius:13px; color:#717e9e; font-size:13px; }
+    .demo-input input { flex:1; min-width:0; padding:8px; border:0; outline:0; background:transparent; color:#eef2ff; font:inherit; }
+    .demo-input button { padding:8px 12px; border:0; border-radius:9px; color:#111225; background:#9b8cff; font-weight:800; cursor:pointer; }
+    .demo-open { display:block; margin:0 22px 22px; padding:12px 15px; border:1px solid #9b8cff66; border-radius:13px; color:#eeeaff; background:#9b8cff1c; text-align:center; font-size:13px; font-weight:750; }
+    .demo-open:hover { background:#9b8cff2b; }
+    .image-studio { display:grid; grid-template-columns: .8fr 1.2fr; gap:18px; padding:20px; border:1px solid var(--line); border-radius:22px; background:#ffffff08; }
+    .image-form { display:flex; flex-direction:column; gap:12px; }
+    .image-form textarea { min-height:150px; padding:14px; border:1px solid var(--line); border-radius:13px; resize:vertical; background:#111a2d; color:var(--text); font:inherit; }
+    .image-form button { padding:13px 16px; border:0; border-radius:13px; background:var(--mint); color:#111522; font-weight:800; cursor:pointer; }
+    .image-form button:disabled { opacity:.5; }
+    .image-result { display:grid; place-items:center; min-height:250px; border:1px dashed #9b8cff66; border-radius:18px; color:var(--muted); text-align:center; overflow:hidden; }
+    .image-result img { display:block; width:100%; height:auto; }
+
+    .step { padding:24px; border-top:1px solid var(--line); }
+    .number { color:var(--violet); font-size:13px; font-weight:800; }
+    .step h3 { margin-top:12px; }
+    footer { padding:30px 0 80px; color:var(--muted); font-size:13px; border-top:1px solid #ffffff12; }
+    @media (max-width: 820px) { .image-studio { grid-template-columns:1fr; } .hero { grid-template-columns:1fr; gap:38px; padding-top:35px; } .chat { transform:none; max-width:560px; } .hero-photo { transform:none; max-width:560px; } .demo { grid-template-columns:1fr; } .bot-menu { border-right:0; border-bottom:1px solid var(--line); } .bot-choice { display:inline-flex; margin-right:4px; } .grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width: 520px) { .wrap { width:min(100% - 28px,1120px); } nav { display:none; } .hero { padding-bottom:52px; } h1 { font-size:48px; } .grid,.how { grid-template-columns:1fr; } section { padding-bottom:60px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#inicio"><span class="logo">✦</span> GH IA</a>
+      <nav><a href="#ias">Explorar IAs</a><a href="#demo">Tela de conversa</a><a href="#criacao">Criar</a><a href="#publicar">Publicar</a></nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Uma conversa para cada momento</div>
+          <h1>Fale com uma IA que combina com você.</h1>
+          <p>Um espaço privado para conversar com personagens e assistentes de IA. Escolha uma personalidade e entre em uma conversa individual, sem chat entre usuários e sem comentários públicos.</p>
+          <div class="buttons"><a class="button primary" href="#ias">Explorar as IAs →</a><a class="button secondary" href="#como-funciona">Saiba como funciona</a></div>
+        </div>
+        <div class="hero-photo" aria-label="Imagem principal do GH IA">
+          <img src="IMG-20260910-WA0003.jpg" alt="Núcleo de inteligência artificial com energia violeta">
+          <div class="photo-label"><div><strong>O futuro conversa com você.</strong><span>Personagens de IA. Conversas particulares.</span></div><div class="photo-badge">GH IA · privado</div></div>
+        </div>
+      </section>
+
+      <section id="ias">
+        <div class="section-head"><div><h2>Encontre sua IA</h2><p>Personalidades diferentes para necessidades diferentes.</p></div></div>
+        <div class="grid">
+          <a class="card" href="#inicio"><div class="card-icon">🌙</div><h3>Luna</h3><p>Uma conselheira alegre e acolhedora para conversar sobre pensamentos e emoções.</p><span class="tag">Reflexão</span></a>
+          <a class="card" href="#inicio"><div class="card-icon">💡</div><h3>Faísca</h3><p>Uma IA animada e divertida para projetos, conteúdo e soluções criativas.</p><span class="tag">Criatividade</span></a>
+          <a class="card" href="#inicio"><div class="card-icon">📚</div><h3>Atlas</h3><p>Um tutor simpático e paciente que explica assuntos difíceis de um jeito simples.</p><span class="tag">Aprendizado</span></a>
+          <a class="card" href="https://cxiglczscrmepblzetng.supabase.co/functions/v1/app" target="_blank" rel="noopener"><div class="card-icon">🚀</div><h3>Orion</h3><p>Uma IA filosófica e séria que ajuda você a pensar, refletir e encontrar seu próprio caminho.</p><span class="tag">Conversar agora →</span></a>
+        </div>
+      </section>
+
+      <section id="demo">
+        <div class="section-head"><div><h2>A conversa é só sua</h2><p>Escolha um personagem e converse em um espaço individual.</p></div></div>
+        <div class="demo" aria-label="Prévia da tela de conversa">
+          <aside class="bot-menu"><div class="bot-menu-title">Suas IAs</div><div class="bot-choice active"><span class="bot-dot">🚀</span><span>Orion</span></div><div class="bot-choice"><span class="bot-dot" style="background:#b86b91">🌙</span><span>Luna</span></div><div class="bot-choice"><span class="bot-dot" style="background:#268f7b">💡</span><span>Faísca</span></div><div class="bot-choice"><span class="bot-dot" style="background:#b87935">📚</span><span>Atlas</span></div></aside>
+          <div class="demo-chat"><div class="demo-head"><span class="bot-dot">🚀</span><div><strong>Orion</strong><small>● pensando com você</small></div></div><div id="orion-log" class="demo-messages"><div class="demo-bubble ai">Qual ideia está ocupando sua cabeça hoje?</div><div class="demo-bubble user">Quero começar algo novo, mas tenho medo de escolher errado.</div><div class="demo-bubble ai">Às vezes, o medo não está tentando impedir o caminho; está perguntando se você escolheu o caminho por si mesmo. O que, nessa decisão, pertence realmente a você?</div></div><form id="orion-form" class="demo-input"><input id="orion-input" placeholder="Escreva para Orion…" autocomplete="off" required><button id="voice-button" type="button" title="Segure para falar">🎙️</button><button type="submit">Enviar</button></form></div>
+        </div>
+      </section>
+
+      <section id="privacidade">
+        <div class="section-head"><div><h2>Feito para ser privado</h2><p>Uma experiência social com a parte social removida.</p></div></div>
+        <div class="how"><div class="step"><div class="number">01</div><h3>Só você e o bot</h3><p>Não existe conversa entre usuários, grupos ou mensagens diretas.</p></div><div class="step"><div class="number">02</div><h3>Bots sem comentários</h3><p>Os personagens têm descrição e personalidade, mas não recebem comentários públicos.</p></div><div class="step"><div class="number">03</div><h3>Conversa individual</h3><p>Escolha uma IA, abra seu chat e continue de onde parou.</p></div></div>
+      </section>
+
+      <section id="criacao">
+        <div class="section-head"><div><h2>Mais que conversa</h2><p>No futuro, o GH IA também vai ajudar a criar.</p></div></div>
+        <div class="how"><div class="step"><div class="number">IMAGENS</div><h3>Gerar e transformar</h3><p>Crie imagens, mude estilos, troque fundos e faça edições com ajuda da IA.</p></div><div class="step"><div class="number">VÍDEOS</div><h3>Dar vida às ideias</h3><p>Gere vídeos curtos, animações e variações a partir de textos ou imagens.</p></div><div class="step"><div class="number">JOGOS</div><h3>Criar mundos originais</h3><p>Desenvolva conceitos e protótipos com boa resolução, sem copiar obras existentes.</p></div></div>
+      </section>
+
+      <section id="publicar">
+        <div class="section-head"><div><h2>Crie. Revise. Publique.</h2><p>O conteúdo só sai do GH IA quando você confirmar.</p></div></div>
+        <div class="how"><div class="step"><div class="number">01</div><h3>Crie com a IA</h3><p>Gere textos, imagens, vídeos ou ideias de jogos com ajuda do GH IA.</p></div><div class="step"><div class="number">02</div><h3>Revise do seu jeito</h3><p>Edite o resultado, escolha o formato e confira tudo antes de enviar.</p></div><div class="step"><div class="number">03</div><h3>Confirme a publicação</h3><p>Você decide se quer salvar, baixar ou publicar em um canal conectado.</p></div></div>
+      </section>
+
+      <section id="memoria">
+        <div class="section-head"><div><h2>Memória diária. Histórico seu.</h2><p>A IA acompanha o seu dia, enquanto suas conversas ficam sob seu controle.</p></div></div>
+        <div class="how"><div class="step"><div class="number">HOJE</div><h3>Contexto até meia-noite</h3><p>Durante o dia, a IA lembra o que vocês conversaram para responder com continuidade.</p></div><div class="step"><div class="number">DEPOIS</div><h3>A memória recomeça</h3><p>No dia seguinte, a memória ativa começa limpa. O histórico anterior continua guardado.</p></div><div class="step"><div class="number">SEU CONTROLE</div><h3>Lixeira e restauração</h3><p>Apague, restaure ou exclua uma conversa permanentemente quando quiser.</p></div></div>
+      </section>
+
+      <section id="como-funciona">
+        <div class="section-head"><div><h2>Comece em três passos</h2><p>Escolha, converse e volte quando quiser.</p></div></div>
+        <div class="how"><div class="step"><div class="number">01</div><h3>Escolha uma personalidade</h3><p>Encontre a IA que combina com o que você precisa agora.</p></div><div class="step"><div class="number">02</div><h3>Abra uma conversa</h3><p>Escreva do seu jeito. A IA responde de acordo com sua personalidade.</p></div><div class="step"><div class="number">03</div><h3>Continue em particular</h3><p>Seu histórico fica na sua conta, sem feed público e sem comentários.</p></div></div>
+      </section>
+    </main>
+    <footer>GH IA · Um espaço para pensar, criar e descobrir novas perspectivas.</footer>
+  </div>
+
+  <script>
+    const GHIA_CHAT_URL = "https://cxiglczscrmepblzetng.supabase.co/functions/v1/Chat";
+    const GHIA_IMAGE_URL = "https://cxiglczscrmepblzetng.supabase.co/functions/v1/image";
+    const GHIA_KEY = "sb_publishable_by6RRlMjFQhmLx3nSFbRpQ_WjKbCrwU";
+    const ghiaHistory = [];
+    const ghiaLog = document.querySelector("#orion-log");
+    const ghiaInput = document.querySelector("#orion-input");
+    function ghiaBubble(text, role) {
+      const el = document.createElement("div");
+      el.className = "demo-bubble " + role;
+      el.textContent = text;
+      ghiaLog.appendChild(el);
+      ghiaLog.scrollTop = ghiaLog.scrollHeight;
+    }
+    function ghiaSpeak(text) {
+      if (!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const voice = new SpeechSynthesisUtterance(text);
+      voice.lang = "pt-BR";
+      voice.rate = 1;
+      window.speechSynthesis.speak(voice);
+    }
+    const voiceButton = document.querySelector("#voice-button");
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.lang = "pt-BR";
+      recognition.interimResults = false;
+      recognition.continuous = false;
+      voiceButton.addEventListener("pointerdown", () => {
+        voiceButton.textContent = "⏺️";
+        recognition.start();
+      });
+      voiceButton.addEventListener("pointerup", () => {
+        voiceButton.textContent = "🎙️";
+        recognition.stop();
+      });
+      recognition.addEventListener("result", (event) => {
+        ghiaInput.value = event.results[0][0].transcript;
+        ghiaInput.focus();
+      });
+      recognition.addEventListener("end", () => {
+        voiceButton.textContent = "🎙️";
+      });
+    } else {
+      voiceButton.disabled = true;
+      voiceButton.title = "Seu navegador não oferece reconhecimento de voz";
+    }
+    document.querySelector("#orion-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const text = ghiaInput.value.trim();
+      if (!text) return;
+      ghiaInput.value = "";
+      ghiaBubble(text, "user");
+      ghiaHistory.push({ role: "user", content: text });
+      const button = event.currentTarget.querySelector("button");
+      button.disabled = true;
+      try {
+        const response = await fetch(GHIA_CHAT_URL, {
+          method: "POST",
+          headers: { Authorization: "Bearer " + GHIA_KEY, apikey: GHIA_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: ghiaHistory })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Não foi possível responder.");
+        if (data.type === "image_request") {
+          ghiaBubble("Vou criar essa imagem agora…", "ai");
+          const imageResponse = await fetch(GHIA_IMAGE_URL, {
+            method: "POST",
+            headers: { Authorization: "Bearer " + GHIA_KEY, apikey: GHIA_KEY, "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: data.prompt })
+          });
+          if (!imageResponse.ok) throw new Error(await imageResponse.text());
+          const image = document.createElement("img");
+          image.src = URL.createObjectURL(await imageResponse.blob());
+          image.alt = "Imagem criada pelo GH IA";
+          image.style.maxWidth = "100%";
+          image.style.borderRadius = "14px";
+          ghiaLog.appendChild(image);
+        } else {
+          ghiaBubble(data.reply, "ai");
+          ghiaHistory.push({ role: "assistant", content: data.reply });
+          ghiaSpeak(data.reply);
+        }
+      } catch (error) {
+        ghiaBubble("Não consegui responder agora: " + error.message, "ai");
+      } finally {
+        button.disabled = false;
+        ghiaInput.focus();
+      }
+    });
+  </script>
+  <script>
+    const IMAGE_FUNCTION_URL = "https://cxiglczscrmepblzetng.supabase.co/functions/v1/image";
+    const IMAGE_KEY = "sb_publishable_by6RRlMjFQhmLx3nSFbRpQ_WjKbCrwU";
+    const imageForm = document.querySelector("#image-form");
+    const imagePrompt = document.querySelector("#image-prompt");
+    const imageButton = document.querySelector("#image-button");
+    const imageResult = document.querySelector("#image-result");
+    imageForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const prompt = imagePrompt.value.trim();
+      if (!prompt) return;
+      imageButton.disabled = true;
+      imageButton.textContent = "Gerando…";
+      imageResult.textContent = "Criando sua imagem…";
+      try {
+        const response = await fetch(IMAGE_FUNCTION_URL, {
+          method: "POST",
+          headers: { Authorization: "Bearer " + IMAGE_KEY, apikey: IMAGE_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(error || "Não foi possível criar a imagem.");
+        }
+        const blob = await response.blob();
+        const imageUrl = URL.createObjectURL(blob);
+        imageResult.innerHTML = "";
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.alt = "Imagem criada pelo GH IA";
+        imageResult.appendChild(image);
+      } catch (error) {
+        imageResult.textContent = "Não consegui criar a imagem agora: " + error.message;
+      } finally {
+        imageButton.disabled = false;
+        imageButton.textContent = "Gerar imagem";
+      }
+    });
+  </script>
+</body>
+</html>
